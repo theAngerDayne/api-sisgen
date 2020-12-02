@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api_sisgen.Data;
 
 namespace api_sisgen.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201202125842_Elimino numero linea en detalle")]
+    partial class Eliminonumerolineaendetalle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,9 +66,6 @@ namespace api_sisgen.Migrations
 
                     b.Property<int>("QtyItem")
                         .HasColumnType("int");
-
-                    b.Property<string>("UnmdItem")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

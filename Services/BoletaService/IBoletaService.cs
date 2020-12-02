@@ -8,7 +8,7 @@ namespace api_sisgen.Services.BoletaService
 {
     public interface IBoletaService
     {
-        Task<ServiceResponse<List<GetBoletaDto>>> CrearBoleta(AddBoletaDto nuevaBoleta);
+        Task<ServiceResponse<GetBoletaDto>> CrearBoleta(AddBoletaDto nuevaBoleta);
         Task<ServiceResponse<List<GetBoletaDto>>> GetBoletas();
     }
 }

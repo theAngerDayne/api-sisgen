@@ -8,7 +8,7 @@ namespace api_sisgen.Models.BoletaElectronica
         [Key]
         [ForeignKey("Boleta")]
         public int BoletaId { get; set; }
-        public string RUTRecep { get; set; }
+        public string RUTRecep { get; set; } = "66666666-6";
         public string CdgIntRecep { get; set; }
         public string RznSocRecep { get; set; }
         public string Contacto { get; set; }
