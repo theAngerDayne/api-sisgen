@@ -6,8 +6,8 @@ namespace api_sisgen.Models.BoletaElectronica
     public class Emisor
     {
         [Key]
-        [ForeignKey("Boleta")]
-        public int BoletaId { get; set; }
+        [ForeignKey("Encabezado")]
+        public int EncabezadoId { get; set; }
         public string RUTEmisor { get; set; }
         public string RznSoc { get; set; }
         public string GiroEmis { get; set; }
@@ -16,7 +16,7 @@ namespace api_sisgen.Models.BoletaElectronica
         public string DirOrigen { get; set; }
         public string CmnaOrigen { get; set; }
         public string CiudadOrigen { get; set; }
-        public Boleta Boleta { get; set; }
+        public Encabezado Encabezado { get; set; }
 
 
     }

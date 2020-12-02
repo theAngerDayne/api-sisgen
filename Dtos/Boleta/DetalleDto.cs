@@ -1,4 +1,4 @@
-namespace api_sisgen.Dtos.Detalle
+namespace api_sisgen.Dtos.Boleta
 {
     public class DetalleDto
     {

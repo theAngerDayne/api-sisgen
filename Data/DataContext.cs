@@ -7,8 +7,8 @@ namespace api_sisgen.Data
     {
          public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-         public DbSet<Boleta> Boletas{get;set;}
-         public DbSet<Detalle> Detalles { get; set; }
+         public DbSet<Documento> Boletas{get;set;}
+         public DbSet<Detalle> DetallesBoleta { get; set; }
         
     }
 }

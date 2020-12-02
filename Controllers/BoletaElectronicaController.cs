@@ -21,5 +21,22 @@ namespace api_sisgen.Controllers
         {
             return Ok(await _boletaService.CrearBoleta(nuevaBoleta));
         }
+
+        public async Task<IActionResult> GetBoletas()
+        {
+            return Ok(await _boletaService.GetBoletas());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBoletaById(int id)
+        {
+            return Ok(await _boletaService.GetBoletaById(id));
+        }
+
+        [HttpGet("{folio}/{tipo}")]
+        public async Task<IActionResult> GetBoletaByFolioTipo(int tipo, int folio)
+        {
+            return Ok(await _boletaService.GetBoletaByFolioTipo(tipo, folio));
+        }
     }
 }

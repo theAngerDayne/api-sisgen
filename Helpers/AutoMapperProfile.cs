@@ -1,23 +1,21 @@
 using api_sisgen.Dtos.Boleta;
-using api_sisgen.Dtos.Detalle;
-using api_sisgen.Dtos.Emisor;
-using api_sisgen.Dtos.IdDoc;
-using api_sisgen.Dtos.Receptor;
 using api_sisgen.Models.BoletaElectronica;
 using AutoMapper;
-using System.Linq;
+
 namespace api_sisgen.Helpers
 {
     public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
         {
-            CreateMap<AddBoletaDto, Boleta>();
-            CreateMap<Receptor, GetReceptorDto>();
-            CreateMap<Emisor, GetEmisorDto>();
-            CreateMap<IdDoc, GetIdDocDto>();
+            CreateMap<AddBoletaDto, Documento>();
+            CreateMap<Encabezado, EncabezadoDTO>(); 
+            CreateMap<Emisor, EmisorDTO>();   
+            CreateMap<Receptor, ReceptorDTO>();   
+            CreateMap<Totales, TotalesDTO>();              
+            CreateMap<IdDoc, IdDocDTO>();   
             CreateMap<Detalle, DetalleDto>();
-            CreateMap<Boleta, GetBoletaDto>().IncludeAllDerived();               
+            CreateMap<Documento, GetDocumentoDTO>().IncludeAllDerived();               
         }
 
     }

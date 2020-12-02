@@ -7,8 +7,8 @@ namespace api_sisgen.Models.BoletaElectronica
     public class IdDoc
     {
         [Key]
-        [ForeignKey("Boleta")]
-        public int BoletaId { get; set; }
+        [ForeignKey("Encabezado")]
+        public int EncabezadoId { get; set; }
         public int TipoDTE { get; set; }
         public int Folio { get; set; }
         public string FchEmis { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
@@ -17,7 +17,7 @@ namespace api_sisgen.Models.BoletaElectronica
         public string PeriodoDesde { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
         public string PeriodoHasta { get; set; }= DateTime.Now.ToString("yyyy-MM-dd");
         public string FchVenc { get; set; }
-        public Boleta Boleta { get; set; }
+        public Encabezado Encabezado { get; set; }
 
 
 

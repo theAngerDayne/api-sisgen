@@ -11,11 +11,7 @@ namespace api_sisgen.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MntNeto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MntExe = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IVA = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MntTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
@@ -23,27 +19,51 @@ namespace api_sisgen.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Detalles",
+                name: "DetallesBoleta",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NroLinDet = table.Column<int>(type: "int", nullable: false),
                     NmbItem = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UnmdItem = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     QtyItem = table.Column<int>(type: "int", nullable: false),
                     PrcItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MontoItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    MontoItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DocumentoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Detalles", x => x.Id);
+                    table.PrimaryKey("PK_DetallesBoleta", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DetallesBoleta_Boletas_DocumentoId",
+                        column: x => x.DocumentoId,
+                        principalTable: "Boletas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Encabezado",
+                columns: table => new
+                {
+                    DocumentoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Encabezado", x => x.DocumentoId);
+                    table.ForeignKey(
+                        name: "FK_Encabezado_Boletas_DocumentoId",
+                        column: x => x.DocumentoId,
+                        principalTable: "Boletas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Emisor",
                 columns: table => new
                 {
-                    BoletaId = table.Column<int>(type: "int", nullable: false),
+                    EncabezadoId = table.Column<int>(type: "int", nullable: false),
                     RUTEmisor = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RznSoc = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GiroEmis = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -55,12 +75,12 @@ namespace api_sisgen.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Emisor", x => x.BoletaId);
+                    table.PrimaryKey("PK_Emisor", x => x.EncabezadoId);
                     table.ForeignKey(
-                        name: "FK_Emisor_Boletas_BoletaId",
-                        column: x => x.BoletaId,
-                        principalTable: "Boletas",
-                        principalColumn: "Id",
+                        name: "FK_Emisor_Encabezado_EncabezadoId",
+                        column: x => x.EncabezadoId,
+                        principalTable: "Encabezado",
+                        principalColumn: "DocumentoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -68,7 +88,7 @@ namespace api_sisgen.Migrations
                 name: "IdDoc",
                 columns: table => new
                 {
-                    BoletaId = table.Column<int>(type: "int", nullable: false),
+                    EncabezadoId = table.Column<int>(type: "int", nullable: false),
                     TipoDTE = table.Column<int>(type: "int", nullable: false),
                     Folio = table.Column<int>(type: "int", nullable: false),
                     FchEmis = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -80,12 +100,12 @@ namespace api_sisgen.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IdDoc", x => x.BoletaId);
+                    table.PrimaryKey("PK_IdDoc", x => x.EncabezadoId);
                     table.ForeignKey(
-                        name: "FK_IdDoc_Boletas_BoletaId",
-                        column: x => x.BoletaId,
-                        principalTable: "Boletas",
-                        principalColumn: "Id",
+                        name: "FK_IdDoc_Encabezado_EncabezadoId",
+                        column: x => x.EncabezadoId,
+                        principalTable: "Encabezado",
+                        principalColumn: "DocumentoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -93,7 +113,7 @@ namespace api_sisgen.Migrations
                 name: "Receptor",
                 columns: table => new
                 {
-                    BoletaId = table.Column<int>(type: "int", nullable: false),
+                    EncabezadoId = table.Column<int>(type: "int", nullable: false),
                     RUTRecep = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CdgIntRecep = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RznSocRecep = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -107,20 +127,46 @@ namespace api_sisgen.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Receptor", x => x.BoletaId);
+                    table.PrimaryKey("PK_Receptor", x => x.EncabezadoId);
                     table.ForeignKey(
-                        name: "FK_Receptor_Boletas_BoletaId",
-                        column: x => x.BoletaId,
-                        principalTable: "Boletas",
-                        principalColumn: "Id",
+                        name: "FK_Receptor_Encabezado_EncabezadoId",
+                        column: x => x.EncabezadoId,
+                        principalTable: "Encabezado",
+                        principalColumn: "DocumentoId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Totales",
+                columns: table => new
+                {
+                    EncabezadoId = table.Column<int>(type: "int", nullable: false),
+                    MntNeto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MntExe = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IVA = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MntTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Totales", x => x.EncabezadoId);
+                    table.ForeignKey(
+                        name: "FK_Totales_Encabezado_EncabezadoId",
+                        column: x => x.EncabezadoId,
+                        principalTable: "Encabezado",
+                        principalColumn: "DocumentoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetallesBoleta_DocumentoId",
+                table: "DetallesBoleta",
+                column: "DocumentoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Detalles");
+                name: "DetallesBoleta");
 
             migrationBuilder.DropTable(
                 name: "Emisor");
@@ -130,6 +176,12 @@ namespace api_sisgen.Migrations
 
             migrationBuilder.DropTable(
                 name: "Receptor");
+
+            migrationBuilder.DropTable(
+                name: "Totales");
+
+            migrationBuilder.DropTable(
+                name: "Encabezado");
 
             migrationBuilder.DropTable(
                 name: "Boletas");

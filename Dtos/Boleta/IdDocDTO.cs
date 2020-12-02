@@ -1,6 +1,6 @@
-namespace api_sisgen.Dtos.IdDoc
+namespace api_sisgen.Dtos.Boleta
 {
-    public class GetIdDocDto
+    public class IdDocDTO
     {
         public int TipoDTE { get; set; }
         public int Folio { get; set; }

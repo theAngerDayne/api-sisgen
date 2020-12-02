@@ -6,8 +6,8 @@ namespace api_sisgen.Models.BoletaElectronica
     public class Receptor
     {
         [Key]
-        [ForeignKey("Boleta")]
-        public int BoletaId { get; set; }
+        [ForeignKey("Encabezado")]
+        public int EncabezadoId { get; set; }
         public string RUTRecep { get; set; } = "66666666-6";
         public string CdgIntRecep { get; set; }
         public string RznSocRecep { get; set; }
@@ -19,7 +19,7 @@ namespace api_sisgen.Models.BoletaElectronica
         public string CmnaPostal { get; set; }
         public string CiudadPostal { get; set; }
 
-        public Boleta Boleta{get;set;}
+        public Encabezado Encabezado{get;set;}
   
       
     }

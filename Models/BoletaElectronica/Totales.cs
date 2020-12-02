@@ -1,12 +1,14 @@
-using System.Collections.Generic;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api_sisgen.Models.BoletaElectronica
 {
-    public class Boleta
+    public class Totales
     {
-        public int Id { get; set; }
-
+        [Key]
+        [ForeignKey("Encabezado")]
+        public int EncabezadoId { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal MntNeto { get; set; }
 
@@ -17,12 +19,7 @@ namespace api_sisgen.Models.BoletaElectronica
         public decimal IVA { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
-        public decimal MntTotal { get; set; }      
-
-        public virtual IdDoc IdDoc { get; set; }
-        public virtual Emisor Emisor { get; set; }
-        public virtual Receptor Receptor { get; set; } 
-        
-        public ICollection<Detalle> Detalles { get; set; }
+        public decimal MntTotal { get; set; }
+        public Encabezado Encabezado { get; set; }
     }
 }

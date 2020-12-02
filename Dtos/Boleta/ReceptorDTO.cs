@@ -1,6 +1,6 @@
-namespace api_sisgen.Dtos.Receptor
+namespace api_sisgen.Dtos.Boleta
 {
-    public class GetReceptorDto
+    public class ReceptorDTO
     {
        
         public string RUTRecep { get; set; } 

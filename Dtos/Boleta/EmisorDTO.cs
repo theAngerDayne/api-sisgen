@@ -1,6 +1,6 @@
-namespace api_sisgen.Dtos.Emisor
+namespace api_sisgen.Dtos.Boleta
 {
-    public class GetEmisorDto
+    public class EmisorDTO
     {
         public string RUTEmisor { get; set; }
         public string RznSoc { get; set; }
