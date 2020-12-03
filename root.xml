@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Documento ID="SisGenDTE_39F1">
+  <Encabezado>
+    <IdDoc>
+      <TipoDTE>39</TipoDTE>
+      <Folio>1</Folio>
+      <FchEmis>2020-12-03</FchEmis>
+      <IndServicio>3</IndServicio>
+    </IdDoc>
+    <Emisor>
+      <RUTEmisor>76161082-1</RUTEmisor>
+      <RznSoc>Sisgen Chile</RznSoc>
+    </Emisor>
+    <Receptor>
+      <RUTRecep>66666666-6</RUTRecep>
+    </Receptor>
+    <Totales>
+      <MntNeto>2808</MntNeto>
+      <MntExe>0</MntExe>
+      <IVA>533</IVA>
+      <MntTotal>3341</MntTotal>
+    </Totales>
+  </Encabezado>
+  <Detalle>
+    <NroLinDet>1</NroLinDet>
+    <NmbItem>guitarra</NmbItem>
+    <QtyItem>3</QtyItem>
+    <PrcItem>13.4</PrcItem>
+    <MontoItem>40</MontoItem>
+  </Detalle>
+  <Detalle>
+    <NroLinDet>2</NroLinDet>
+    <NmbItem>bajo</NmbItem>
+    <QtyItem>2</QtyItem>
+    <PrcItem>1650.6</PrcItem>
+    <MontoItem>3301</MontoItem>
+  </Detalle>
+</Documento>

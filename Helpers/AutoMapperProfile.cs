@@ -8,14 +8,18 @@ namespace api_sisgen.Helpers
     {
         public AutoMapperProfile()
         {
-            CreateMap<AddBoletaDto, Documento>();
+            CreateMap<AddBoletaDto, Boleta>();
+
             CreateMap<Encabezado, EncabezadoDTO>(); 
             CreateMap<Emisor, EmisorDTO>();   
             CreateMap<Receptor, ReceptorDTO>();   
             CreateMap<Totales, TotalesDTO>();              
             CreateMap<IdDoc, IdDocDTO>();   
             CreateMap<Detalle, DetalleDto>();
-            CreateMap<Documento, GetDocumentoDTO>().IncludeAllDerived();               
+
+            CreateMap<Boleta, GetBoletaDTO>().IncludeAllDerived();    
+               CreateMap<Boleta, Documento>().IncludeAllDerived();              
+
         }
 
     }

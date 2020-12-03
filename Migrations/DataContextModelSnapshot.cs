@@ -19,6 +19,18 @@ namespace api_sisgen.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Boleta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Boletas");
+                });
+
             modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Detalle", b =>
                 {
                     b.Property<int>("Id")
@@ -26,7 +38,7 @@ namespace api_sisgen.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("DocumentoId")
+                    b.Property<int?>("BoletaId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("MontoItem")
@@ -46,21 +58,9 @@ namespace api_sisgen.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DocumentoId");
+                    b.HasIndex("BoletaId");
 
-                    b.ToTable("DetallesBoleta");
-                });
-
-            modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Documento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Boletas");
+                    b.ToTable("DetalleBoletas");
                 });
 
             modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Emisor", b =>
@@ -99,10 +99,10 @@ namespace api_sisgen.Migrations
 
             modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Encabezado", b =>
                 {
-                    b.Property<int>("DocumentoId")
+                    b.Property<int>("BoletaId")
                         .HasColumnType("int");
 
-                    b.HasKey("DocumentoId");
+                    b.HasKey("BoletaId");
 
                     b.ToTable("Encabezado");
                 });
@@ -205,9 +205,9 @@ namespace api_sisgen.Migrations
 
             modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Detalle", b =>
                 {
-                    b.HasOne("api_sisgen.Models.BoletaElectronica.Documento", null)
+                    b.HasOne("api_sisgen.Models.BoletaElectronica.Boleta", null)
                         .WithMany("Detalles")
-                        .HasForeignKey("DocumentoId");
+                        .HasForeignKey("BoletaId");
                 });
 
             modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Emisor", b =>
@@ -223,13 +223,13 @@ namespace api_sisgen.Migrations
 
             modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Encabezado", b =>
                 {
-                    b.HasOne("api_sisgen.Models.BoletaElectronica.Documento", "Documento")
+                    b.HasOne("api_sisgen.Models.BoletaElectronica.Boleta", "Boleta")
                         .WithOne("Encabezado")
-                        .HasForeignKey("api_sisgen.Models.BoletaElectronica.Encabezado", "DocumentoId")
+                        .HasForeignKey("api_sisgen.Models.BoletaElectronica.Encabezado", "BoletaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Documento");
+                    b.Navigation("Boleta");
                 });
 
             modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.IdDoc", b =>
@@ -265,7 +265,7 @@ namespace api_sisgen.Migrations
                     b.Navigation("Encabezado");
                 });
 
-            modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Documento", b =>
+            modelBuilder.Entity("api_sisgen.Models.BoletaElectronica.Boleta", b =>
                 {
                     b.Navigation("Detalles");
 

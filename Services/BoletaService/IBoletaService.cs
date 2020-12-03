@@ -7,10 +7,10 @@ namespace api_sisgen.Services.BoletaService
 {
     public interface IBoletaService
     {
-        Task<ServiceResponse<GetDocumentoDTO>> CrearBoleta(AddBoletaDto nuevaBoleta);
-        Task<ServiceResponse<List<GetDocumentoDTO>>> GetBoletas();
-        Task<ServiceResponse<GetDocumentoDTO>> GetBoletaById(int id);
-        Task<ServiceResponse<GetDocumentoDTO>> GetBoletaByFolioTipo(int tipo, int folio);
+        Task<ServiceResponse<GetBoletaDTO>> CrearBoleta(AddBoletaDto nuevaBoleta);
+        Task<ServiceResponse<List<GetBoletaDTO>>> GetBoletas();
+        Task<ServiceResponse<GetBoletaDTO>> GetBoletaById(int id);
+        Task<ServiceResponse<GetBoletaDTO>> GetBoletaByFolioTipo(int tipo, int folio);
 
 
     }

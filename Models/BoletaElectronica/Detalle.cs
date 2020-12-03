@@ -5,6 +5,9 @@ namespace api_sisgen.Models.BoletaElectronica
     public class Detalle
     {
         public int Id { get; set; }
+
+        [NotMapped]
+        public int NroLinDet { get; set; }
         public string NmbItem { get; set; }
         public string UnmdItem { get; set; }
         public int QtyItem { get; set; }

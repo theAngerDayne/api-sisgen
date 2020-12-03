@@ -2,6 +2,7 @@ namespace api_sisgen.Dtos.Boleta
 {
     public class DetalleDto
     {
+        public int NroLinDet {get;set;}
         public string NmbItem { get; set; }
         public string UnmdItem { get; set; }
         public int QtyItem { get; set; }

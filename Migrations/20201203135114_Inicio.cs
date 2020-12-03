@@ -19,7 +19,7 @@ namespace api_sisgen.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DetallesBoleta",
+                name: "DetalleBoletas",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -29,14 +29,14 @@ namespace api_sisgen.Migrations
                     QtyItem = table.Column<int>(type: "int", nullable: false),
                     PrcItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MontoItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DocumentoId = table.Column<int>(type: "int", nullable: true)
+                    BoletaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DetallesBoleta", x => x.Id);
+                    table.PrimaryKey("PK_DetalleBoletas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DetallesBoleta_Boletas_DocumentoId",
-                        column: x => x.DocumentoId,
+                        name: "FK_DetalleBoletas_Boletas_BoletaId",
+                        column: x => x.BoletaId,
                         principalTable: "Boletas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -46,14 +46,14 @@ namespace api_sisgen.Migrations
                 name: "Encabezado",
                 columns: table => new
                 {
-                    DocumentoId = table.Column<int>(type: "int", nullable: false)
+                    BoletaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Encabezado", x => x.DocumentoId);
+                    table.PrimaryKey("PK_Encabezado", x => x.BoletaId);
                     table.ForeignKey(
-                        name: "FK_Encabezado_Boletas_DocumentoId",
-                        column: x => x.DocumentoId,
+                        name: "FK_Encabezado_Boletas_BoletaId",
+                        column: x => x.BoletaId,
                         principalTable: "Boletas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -80,7 +80,7 @@ namespace api_sisgen.Migrations
                         name: "FK_Emisor_Encabezado_EncabezadoId",
                         column: x => x.EncabezadoId,
                         principalTable: "Encabezado",
-                        principalColumn: "DocumentoId",
+                        principalColumn: "BoletaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -105,7 +105,7 @@ namespace api_sisgen.Migrations
                         name: "FK_IdDoc_Encabezado_EncabezadoId",
                         column: x => x.EncabezadoId,
                         principalTable: "Encabezado",
-                        principalColumn: "DocumentoId",
+                        principalColumn: "BoletaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -132,7 +132,7 @@ namespace api_sisgen.Migrations
                         name: "FK_Receptor_Encabezado_EncabezadoId",
                         column: x => x.EncabezadoId,
                         principalTable: "Encabezado",
-                        principalColumn: "DocumentoId",
+                        principalColumn: "BoletaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -153,20 +153,20 @@ namespace api_sisgen.Migrations
                         name: "FK_Totales_Encabezado_EncabezadoId",
                         column: x => x.EncabezadoId,
                         principalTable: "Encabezado",
-                        principalColumn: "DocumentoId",
+                        principalColumn: "BoletaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetallesBoleta_DocumentoId",
-                table: "DetallesBoleta",
-                column: "DocumentoId");
+                name: "IX_DetalleBoletas_BoletaId",
+                table: "DetalleBoletas",
+                column: "BoletaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DetallesBoleta");
+                name: "DetalleBoletas");
 
             migrationBuilder.DropTable(
                 name: "Emisor");

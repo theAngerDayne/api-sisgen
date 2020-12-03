@@ -33,7 +33,7 @@ namespace api_sisgen.Controllers
             return Ok(await _boletaService.GetBoletaById(id));
         }
 
-        [HttpGet("{folio}/{tipo}")]
+        [HttpGet("{tipo}/{folio}")]
         public async Task<IActionResult> GetBoletaByFolioTipo(int tipo, int folio)
         {
             return Ok(await _boletaService.GetBoletaByFolioTipo(tipo, folio));
